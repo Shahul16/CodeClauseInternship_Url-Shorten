@@ -1,0 +1,39 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Function to set a random background image
+        function setRandomBackground() {
+            const images = ['tech1.jpg', 'tech2.jpg', 'tech3.jpg', "tech4.jpg", "tech5.jpg"];
+            const randomIndex = Math.floor(Math.random() * images.length);
+            const imageUrl = "{{ url_for('static', filename='') }}" + images[randomIndex];
+            document.body.style.backgroundImage = `url(${imageUrl})`;
+        }
+    </script>
+</head>
+<body onload="setRandomBackground()">
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <div class="url-form">
+            <form method="post">
+                <label for="long_url">Enter the URL to shorten:</label>
+                <input type="text" name="long_url" id="long_url" required>
+                <input type="submit" value="Shorten">
+            </form>
+        </div>
+        {% if shortened_url %}
+            <div class="shortened-url">
+                <strong>Shortened URL:</strong>
+                <a href="{{ shortened_url }}" target="_blank">{{ shortened_url }}</a>
+            </div>
+        {% endif %}
+        <div class="copyright">
+            &copy; 2023 Shahul Hameed. All rights reserved. Intern From Codeclause
+        </div>
+    </div>
+</body>
+</html>
